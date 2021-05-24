@@ -1,4 +1,4 @@
-URL_base = 'https://crsuhfhhz7.execute-api.us-east-1.amazonaws.com/dev/todos'
+const URL_base = 'https://crsuhfhhz7.execute-api.us-east-1.amazonaws.com/dev/todos'
 const fetch = require("node-fetch");
 
 
@@ -7,6 +7,8 @@ function get_all_todos(){
     .then((res) => res.json())
     .then((data) => {
         console.log(data)
+        return(data)
+
     })
     .catch((error) => {
         console.log(error)
@@ -73,5 +75,6 @@ function delete_todo(text, id){
 }
 
 
-update_todo("f1cd4a40-bc84-11eb-af8d-e720a8e429da", "foo")
+// update_todo("f1cd4a40-bc84-11eb-af8d-e720a8e429da", "foo")
 
+export default {get_all_todos, get_todo, create_todo, update_todo, delete_todo}
