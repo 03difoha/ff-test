@@ -54,7 +54,8 @@ function update_todo(id, checked) {
     });
 }
 
-function delete_todo(text, id) {
+function delete_todo(id) {
+  console.log(id);
   fetch(URL_base + `/${id}`, {
     method: "DELETE",
   })

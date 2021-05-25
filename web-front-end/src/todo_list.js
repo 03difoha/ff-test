@@ -8,6 +8,7 @@ class Todo_List extends react.Component {
       isFetching: true,
       data: [],
     };
+    // this.update = this.update.bind(this);
   }
 
   async componentDidMount() {
@@ -17,7 +18,13 @@ class Todo_List extends react.Component {
   }
 
   update(e) {
-    api.update_todo(e, true);
+    api.update_todo(e, document.getElementById(e).checked);
+  }
+
+  delete(e) {
+    console.log(e);
+    api.delete_todo(e);
+    document.getElementById(e).parentNode.parentNode.remove();
   }
 
   render() {
@@ -25,17 +32,18 @@ class Todo_List extends react.Component {
       <table>
         <tbody>
           {this.props.data.map((todo, index) => (
-            <tr key={index}>
+            <tr class={todo.id} key={index}>
               <td>{todo.text}</td>
               <td>
                 <input
                   type="checkbox"
                   id={todo.id}
                   defaultChecked={todo.checked}
+                  onClick={(e) => this.update(todo.id)}
                 ></input>
               </td>
               <td>
-                <button>Delete</button>
+                <button onClick={(e) => this.delete(todo.id)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -52,7 +60,7 @@ class Todo_List extends react.Component {
                 ></input>
               </td>
               <td>
-                <button>Delete</button>
+                <button onClick={(e) => this.delete(todo.id)}>Delete</button>
               </td>
             </tr>
           ))}
