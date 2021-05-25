@@ -35,14 +35,17 @@ async function create_todo(text) {
   return respose.json();
 }
 
-function update_todo(id, text) {
-  fetch(URL_base + `/${id}`, {
-    body: JSON.stringify({
-      checked: true,
-    }),
-    method: "PUT",
-  })
-    // .then((res) => res.json())
+function update_todo(id, checked) {
+  fetch(
+    `https://crsuhfhhz7.execute-api.us-east-1.amazonaws.com/dev/todos/${id}`,
+    {
+      body: JSON.stringify({
+        checked: checked,
+      }),
+      method: "PUT",
+    }
+  )
+    .then((res) => res.json())
     .then((data) => {
       console.log(data);
     })
@@ -65,11 +68,11 @@ function delete_todo(text, id) {
 }
 
 // update_todo("f1cd4a40-bc84-11eb-af8d-e720a8e429da", "foo")
-update_todo("8e066d60-bd3e-11eb-afc8-4d1d2646bc0e");
-// export default {
-//   get_all_todos,
-//   get_todo,
-//   create_todo,
-//   update_todo,
-//   delete_todo,
-// };
+// update_todo("8e066d60-bd3e-11eb-afc8-4d1d2646bc0e", "new");
+export default {
+  get_all_todos,
+  get_todo,
+  create_todo,
+  update_todo,
+  delete_todo,
+};

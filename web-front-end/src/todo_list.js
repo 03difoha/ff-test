@@ -17,7 +17,7 @@ class Todo_List extends react.Component {
   }
 
   update(e) {
-    api.update_todo(e);
+    api.update_todo(e, true);
   }
 
   render() {
