@@ -1,5 +1,8 @@
 import react from "react";
 import api from "./api";
+import Todo_List from "./todo_list";
+import TodoList from "./todo_list";
+
 class Todo_Form extends react.Component {
   constructor(props) {
     super(props);
@@ -22,6 +25,7 @@ class Todo_Form extends react.Component {
       <div>
         <input value={this.state.value} onChange={this.handleChange} />
         <button onClick={this.submit}>Add new To-do</button>
+        <Todo_List></Todo_List>
       </div>
     );
   }

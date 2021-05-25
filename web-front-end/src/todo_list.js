@@ -12,19 +12,40 @@ class Todo_List extends react.Component {
 
   async componentDidMount() {
     const response = await api.get_all_todos();
+    response.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
     this.setState({ data: response });
+    console.log(response);
   }
 
   render() {
     return (
-      <div className="users">
+      // <div className="users">
+      //   {this.state.data.map((todo, index) => (
+
+      //     <div key={index}>
+      //       <p>{todo.text}</p>
+      //       <input
+      //         type="checkbox"
+      //         id={todo.text}
+      //         checked={todo.checked}
+      //       ></input>
+      //     </div>
+      //   ))}
+      // </div>
+      <table>
         {this.state.data.map((todo, index) => (
-          <div key={index}>
-            <h3>{todo.text}</h3>
-            <p>{todo.checked}</p>
-          </div>
+          <tr>
+            <td>{todo.text}</td>
+            <td>
+              <input
+                type="checkbox"
+                id={todo.text}
+                checked={todo.checked}
+              ></input>
+            </td>
+          </tr>
         ))}
-      </div>
+      </table>
     );
   }
 }
