@@ -2,12 +2,12 @@ const URL_base = 'https://crsuhfhhz7.execute-api.us-east-1.amazonaws.com/dev/tod
 const fetch = require("node-fetch");
 
 
-function get_all_todos(){
-    fetch(URL_base)
-    .then((res) => res.json())
-    .then((data) => {
-        console.log(data)
-        return(data)
+async function get_all_todos(){
+    await fetch(URL_base)
+    // .then((res) => res.json())
+    .then((res) => {
+        // console.log(data)
+        return(res)
 
     })
     .catch((error) => {
