@@ -16,6 +16,10 @@ class Todo_List extends react.Component {
     this.setState({ data: response });
   }
 
+  update(e) {
+    api.update_todo(e);
+  }
+
   render() {
     return (
       <table>
@@ -26,8 +30,8 @@ class Todo_List extends react.Component {
               <td>
                 <input
                   type="checkbox"
-                  id={todo.text}
-                  checked={todo.checked}
+                  id={todo.id}
+                  defaultChecked={todo.checked}
                 ></input>
               </td>
               <td>
@@ -42,8 +46,9 @@ class Todo_List extends react.Component {
               <td>
                 <input
                   type="checkbox"
-                  id={todo.text}
-                  checked={todo.checked}
+                  id={todo.id}
+                  defaultChecked={todo.checked}
+                  onClick={(e) => this.update(todo.id)}
                 ></input>
               </td>
               <td>
