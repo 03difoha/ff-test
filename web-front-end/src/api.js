@@ -13,15 +13,15 @@ function get_todo(id) {
   fetch(URL_base + `/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      //   console.log(data);
     })
     .catch((error) => {
       console.log(error);
     });
 }
 
-function create_todo(text) {
-  fetch(URL_base, {
+async function create_todo(text) {
+  const respose = await fetch(URL_base, {
     method: "POST",
     body: JSON.stringify({
       text: text,
@@ -29,14 +29,10 @@ function create_todo(text) {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  }).catch((error) => {
+    console.log(error);
+  });
+  return respose.json();
 }
 
 function update_todo(id, text) {

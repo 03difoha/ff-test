@@ -17,34 +17,46 @@ class Todo_List extends react.Component {
     console.log(response);
   }
 
+  componentDidUpdate() {
+    console.log(this.props.data);
+  }
+
   render() {
     return (
-      // <div className="users">
-      //   {this.state.data.map((todo, index) => (
-
-      //     <div key={index}>
-      //       <p>{todo.text}</p>
-      //       <input
-      //         type="checkbox"
-      //         id={todo.text}
-      //         checked={todo.checked}
-      //       ></input>
-      //     </div>
-      //   ))}
-      // </div>
       <table>
-        {this.state.data.map((todo, index) => (
-          <tr>
-            <td>{todo.text}</td>
-            <td>
-              <input
-                type="checkbox"
-                id={todo.text}
-                checked={todo.checked}
-              ></input>
-            </td>
-          </tr>
-        ))}
+        <tbody>
+          {this.props.data.map((todo, index) => (
+            <tr key={index}>
+              <td>{todo.text}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  id={todo.text}
+                  checked={todo.checked}
+                ></input>
+              </td>
+              <td>
+                <button>Delete</button>
+              </td>
+            </tr>
+          ))}
+
+          {this.state.data.map((todo, index) => (
+            <tr key={index}>
+              <td>{todo.text}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  id={todo.text}
+                  checked={todo.checked}
+                ></input>
+              </td>
+              <td>
+                <button>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     );
   }

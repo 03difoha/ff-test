@@ -8,6 +8,7 @@ class Todo_Form extends react.Component {
     super(props);
     this.state = {
       value: "random text",
+      new_todos: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.submit = this.submit.bind(this);
@@ -16,16 +17,19 @@ class Todo_Form extends react.Component {
     console.log("handle change called");
     this.setState({ value: e.target.value });
   }
-  submit(e) {
+  async submit(e) {
     console.log("clicked submit");
-    api.create_todo(this.state.value);
+    var res = await api.create_todo(this.state.value);
+    this.setState({ new_todos: [res] });
+    //   .then((res) => console.log(res));
   }
   render() {
     return (
       <div>
         <input value={this.state.value} onChange={this.handleChange} />
         <button onClick={this.submit}>Add new To-do</button>
-        <Todo_List></Todo_List>
+        <div></div>
+        <Todo_List data={this.state.new_todos}></Todo_List>
       </div>
     );
   }
