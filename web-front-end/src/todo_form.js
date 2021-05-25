@@ -20,8 +20,9 @@ class Todo_Form extends react.Component {
   async submit(e) {
     console.log("clicked submit");
     var res = await api.create_todo(this.state.value);
-    this.setState({ new_todos: [res] });
-    //   .then((res) => console.log(res));
+    var newest = this.state.new_todos;
+    newest.unshift(res);
+    this.setState({ new_todos: newest });
   }
   render() {
     return (

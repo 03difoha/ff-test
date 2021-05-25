@@ -14,11 +14,6 @@ class Todo_List extends react.Component {
     const response = await api.get_all_todos();
     response.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
     this.setState({ data: response });
-    console.log(response);
-  }
-
-  componentDidUpdate() {
-    console.log(this.props.data);
   }
 
   render() {
