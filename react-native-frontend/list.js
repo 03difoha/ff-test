@@ -10,6 +10,7 @@ class List extends React.Component {
     super(props);
     this.state = {
       data: [],
+      new_todos: [],
     };
   }
 
@@ -17,6 +18,13 @@ class List extends React.Component {
     const response = await api.get_all_todos();
     response.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
     this.setState({ data: response });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.data.id !== prevProps.data.id) {
+      var updatedList = [this.props.data].concat(this.state.data);
+      this.setState({ data: updatedList });
+    }
   }
 
   update(id, checked) {
