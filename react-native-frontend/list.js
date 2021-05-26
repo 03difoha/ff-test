@@ -1,9 +1,15 @@
-import React, { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import React from "react";
+import {
+  Text,
+  View,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Button,
+} from "react-native";
+
 import api from "./api";
 import Checkbox from "./checkbox";
-
-import { FlatList, SafeAreaView, StyleSheet, Button } from "react-native";
 
 class List extends React.Component {
   constructor(props) {
@@ -25,18 +31,6 @@ class List extends React.Component {
       var updatedList = [this.props.data].concat(this.state.data);
       this.setState({ data: updatedList });
     }
-  }
-
-  update(id, checked) {
-    const response = api.update_todo(id, !checked);
-    if ("updatedAt" in response) {
-      for (var i in this.state.data) {
-        if (i.id == id) {
-          i.checked == !response.checked;
-        }
-      }
-    }
-    console.log(this.state.data);
   }
 
   delete(e) {
@@ -73,13 +67,13 @@ class List extends React.Component {
 }
 const styles = StyleSheet.create({
   container: {
-    height: "50%",
-    marginTop: 100,
-
     borderColor: "black",
+    width: 300,
+    flexDirection: "column",
   },
   row: {
     flexDirection: "row",
+    flex: 1,
   },
   item: {
     fontSize: 20,

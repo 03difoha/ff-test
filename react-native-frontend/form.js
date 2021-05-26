@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, TextInput, View, Button, StyleSheet } from "react-native";
+import React from "react";
+import { TextInput, View, Button, StyleSheet } from "react-native";
 
 import react from "react";
 import api from "./api";
@@ -20,6 +20,11 @@ class Form extends react.Component {
     console.log(this.state.value);
   }
   async submit() {
+    if (!this.state.value.trim()) {
+      alert("Please enter some text.");
+      return;
+    }
+
     var res = await api.create_todo(this.state.value);
     this.setState({ value: "", new_todo: res });
   }

@@ -30,13 +30,13 @@ class TodoList extends react.Component {
     api.delete_todo(e);
     var removedTodo = this.state.data;
     var i = 0;
-    while (i < removedTodo.length) {
-      if (removedTodo[i].id === e) {
-        removedTodo.splice(i, 1);
-      } else {
-        ++i;
-      }
-    }
+    // while (i < removedTodo.length) {
+    //   if (removedTodo[i].id === e) {
+    //     removedTodo.splice(i, 1);
+    //   } else {
+    //     ++i;
+    //   }
+    // }
     this.setState({ data: removedTodo });
   }
 

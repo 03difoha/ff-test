@@ -16,6 +16,10 @@ class TodoForm extends react.Component {
     this.setState({ value: e.target.value });
   }
   async submit(e) {
+    if (!this.state.value.trim()) {
+      alert("Please enter some text.");
+      return;
+    }
     var res = await api.create_todo(this.state.value);
     this.setState({ value: "", new_todo: res });
   }
