@@ -1,5 +1,5 @@
 import { CheckBox } from "react-native-elements";
-import React, { useState } from "react";
+import React from "react";
 import api from "./api";
 
 class Checkbox extends React.Component {
@@ -16,7 +16,7 @@ class Checkbox extends React.Component {
   handleOnPress = () => {
     var newState = !this.state.checked;
     this.setState({ checked: newState });
-    api.update_todo(this.props.id, newState);
+    api.updateTodo(this.props.id, newState);
     console.log(this.props.id, newState);
   };
   render() {

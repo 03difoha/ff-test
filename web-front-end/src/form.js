@@ -1,13 +1,13 @@
 import react from "react";
 import api from "./api";
-import TodoList from "./todolist";
+import List from "./list";
 
-class TodoForm extends react.Component {
+class Form extends react.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: "",
-      new_todo: [],
+      newTodo: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.submit = this.submit.bind(this);
@@ -20,8 +20,8 @@ class TodoForm extends react.Component {
       alert("Please enter some text.");
       return;
     }
-    var res = await api.create_todo(this.state.value);
-    this.setState({ value: "", new_todo: res });
+    var res = await api.createTodos(this.state.value);
+    this.setState({ value: "", newTodo: res });
   }
   render() {
     return (
@@ -29,10 +29,10 @@ class TodoForm extends react.Component {
         <input value={this.state.value} onChange={this.handleChange} />
         <button onClick={this.submit}>Add new To-do</button>
         <div></div>
-        <TodoList data={this.state.new_todo}></TodoList>
+        <List data={this.state.newTodo}></List>
       </div>
     );
   }
 }
 
-export default TodoForm;
+export default Form;

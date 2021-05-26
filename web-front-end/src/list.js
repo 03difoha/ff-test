@@ -1,7 +1,7 @@
 import react from "react";
 
 import api from "./api";
-class TodoList extends react.Component {
+class List extends react.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +10,7 @@ class TodoList extends react.Component {
   }
 
   async componentDidMount() {
-    const response = await api.get_all_todos();
+    const response = await api.getAllTodos();
     response.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
     this.setState({ data: response });
   }
@@ -23,20 +23,20 @@ class TodoList extends react.Component {
   }
 
   update(e) {
-    api.update_todo(e, document.getElementById(e).checked);
+    api.updateTodos(e, document.getElementById(e).checked);
   }
 
   delete(e) {
-    api.delete_todo(e);
+    api.deleteTodos(e);
     var removedTodo = this.state.data;
     var i = 0;
-    // while (i < removedTodo.length) {
-    //   if (removedTodo[i].id === e) {
-    //     removedTodo.splice(i, 1);
-    //   } else {
-    //     ++i;
-    //   }
-    // }
+    while (i < removedTodo.length) {
+      if (removedTodo[i].id === e) {
+        removedTodo.splice(i, 1);
+      } else {
+        ++i;
+      }
+    }
     this.setState({ data: removedTodo });
   }
 
@@ -45,7 +45,7 @@ class TodoList extends react.Component {
       <table>
         <tbody>
           {this.state.data.map((todo, index) => (
-            <tr key={index}>
+            <tr key={todo.id}>
               <td>{todo.text}</td>
               <td>
                 <input
@@ -66,4 +66,4 @@ class TodoList extends react.Component {
   }
 }
 
-export default TodoList;
+export default List;

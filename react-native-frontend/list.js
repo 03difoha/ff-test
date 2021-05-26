@@ -16,12 +16,12 @@ class List extends React.Component {
     super(props);
     this.state = {
       data: [],
-      new_todos: [],
+      newTodos: [],
     };
   }
 
   async componentDidMount() {
-    const response = await api.get_all_todos();
+    const response = await api.getAllTodos();
     response.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
     this.setState({ data: response });
   }
@@ -34,7 +34,7 @@ class List extends React.Component {
   }
 
   delete(e) {
-    api.delete_todo(e);
+    api.deleteTodo(e);
     var removedTodo = this.state.data;
     var i = 0;
     while (i < removedTodo.length) {

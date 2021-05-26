@@ -3,14 +3,14 @@ const URL_base =
 
 const fetch = require("node-fetch");
 
-async function get_all_todos() {
+async function getAllTodos() {
   const response = await fetch(URL_base).catch((error) => {
     console.log(error);
   });
   return response.json();
 }
 
-async function create_todo(text) {
+async function createTodo(text) {
   const respose = await fetch(URL_base, {
     method: "POST",
     body: JSON.stringify({
@@ -25,7 +25,7 @@ async function create_todo(text) {
   return respose.json();
 }
 
-function update_todo(id, checked) {
+function updateTodo(id, checked) {
   const response = fetch(URL_base + `/${id}`, {
     body: JSON.stringify({
       checked: checked,
@@ -42,7 +42,7 @@ function update_todo(id, checked) {
   return response;
 }
 
-function delete_todo(id) {
+function deleteTodo(id) {
   fetch(URL_base + `/${id}`, {
     method: "DELETE",
   })
@@ -56,8 +56,8 @@ function delete_todo(id) {
 }
 
 export default {
-  get_all_todos,
-  create_todo,
-  update_todo,
-  delete_todo,
+  getAllTodos,
+  createTodo,
+  updateTodo,
+  deleteTodo,
 };

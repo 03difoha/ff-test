@@ -10,14 +10,13 @@ class Form extends react.Component {
     super(props);
     this.state = {
       value: "",
-      new_todo: [],
+      newTodo: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.submit = this.submit.bind(this);
   }
   handleChange(value) {
     this.setState({ value: value });
-    console.log(this.state.value);
   }
   async submit() {
     if (!this.state.value.trim()) {
@@ -25,8 +24,8 @@ class Form extends react.Component {
       return;
     }
 
-    var res = await api.create_todo(this.state.value);
-    this.setState({ value: "", new_todo: res });
+    var res = await api.createTodo(this.state.value);
+    this.setState({ value: "", newTodo: res });
   }
   render() {
     return (
@@ -37,7 +36,7 @@ class Form extends react.Component {
           onChangeText={this.handleChange}
         />
         <Button title={"Add new To-do"} onPress={this.submit}></Button>
-        <List data={this.state.new_todo}></List>
+        <List data={this.state.newTodo}></List>
       </View>
     );
   }

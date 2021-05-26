@@ -1,12 +1,12 @@
 import "./App.css";
-import TodoForm from "./todoform";
+import Form from "./form";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>To-do list</h1>
-        <TodoForm></TodoForm>
+        <Form></Form>
       </header>
     </div>
   );
