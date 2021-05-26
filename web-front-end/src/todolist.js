@@ -1,14 +1,12 @@
 import react from "react";
 
 import api from "./api";
-class Todo_List extends react.Component {
+class TodoList extends react.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFetching: true,
       data: [],
     };
-    // this.update = this.update.bind(this);
   }
 
   async componentDidMount() {
@@ -17,22 +15,40 @@ class Todo_List extends react.Component {
     this.setState({ data: response });
   }
 
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.data.id !== prevProps.data.id) {
+      var updatedList = [this.props.data].concat(this.state.data);
+      this.setState({ data: updatedList });
+    }
+    // console.log(this.props.data.id);
+  }
+
   update(e) {
     api.update_todo(e, document.getElementById(e).checked);
   }
 
   delete(e) {
-    console.log(e);
     api.delete_todo(e);
-    document.getElementById(e).parentNode.parentNode.remove();
+    var removedTodo = this.state.data;
+    var i = 0;
+    while (i < removedTodo.length) {
+      if (removedTodo[i].id === e) {
+        removedTodo.splice(i, 1);
+      } else {
+        ++i;
+      }
+    }
+    this.setState({ data: removedTodo });
+    // document.getElementById(e).parentNode.parentNode.style.display = "none";
   }
 
   render() {
     return (
       <table>
         <tbody>
-          {this.props.data.map((todo, index) => (
-            <tr class={todo.id} key={index}>
+          {/* {this.props.data.map((todo, index) => (
+            <tr key={index}>
               <td>{todo.text}</td>
               <td>
                 <input
@@ -46,7 +62,7 @@ class Todo_List extends react.Component {
                 <button onClick={(e) => this.delete(todo.id)}>Delete</button>
               </td>
             </tr>
-          ))}
+          ))} */}
 
           {this.state.data.map((todo, index) => (
             <tr key={index}>
@@ -70,4 +86,4 @@ class Todo_List extends react.Component {
   }
 }
 
-export default Todo_List;
+export default TodoList;
