@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import api from "./api";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Button,
+} from "react-native";
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -60,10 +66,19 @@ class List extends React.Component {
   render() {
     return (
       //   <Text>foo</Text>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
         <FlatList
           data={this.state.data}
-          renderItem={({ item }) => <Text>{item.id}</Text>}
+          renderItem={({ item }) => (
+            <View style={styles.row}>
+              <Text style={styles.item}>{item.text}</Text>
+              <Button
+                onPress={(e) => this.delete(item.id)}
+                title="Delete"
+                accessibilityLabel="Learn more about this purple button"
+              />
+            </View>
+          )}
           keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
@@ -92,13 +107,16 @@ class List extends React.Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    height: "50%",
+    marginTop: 100,
+
+    borderColor: "black",
+  },
+  row: {
+    flexDirection: "row",
   },
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    fontSize: 20,
   },
   title: {
     fontSize: 32,
