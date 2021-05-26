@@ -32,9 +32,6 @@ function updateTodos(id, checked) {
     method: "PUT",
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    })
     .catch((error) => {
       console.log(error);
     });
@@ -45,9 +42,6 @@ function deleteTodos(id) {
     method: "DELETE",
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    })
     .catch((error) => {
       console.log(error);
     });

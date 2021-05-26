@@ -17,7 +17,6 @@ class Checkbox extends React.Component {
     var newState = !this.state.checked;
     this.setState({ checked: newState });
     api.updateTodo(this.props.id, newState);
-    console.log(this.props.id, newState);
   };
   render() {
     return (
