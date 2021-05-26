@@ -36,3 +36,6 @@ npm install
 npm start 
 ```
 
+This will start the metro bundler app in a tab in your browser. 
+Download the Expo app for android or iPhone, scan the QR code in metro bundler to test the react native app.
+
