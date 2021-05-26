@@ -3,13 +3,7 @@ import { Text, TextInput, View } from "react-native";
 import api from "./api";
 import Checkbox from "./checkbox";
 
-import {
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Button,
-} from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Button } from "react-native";
 
 class List extends React.Component {
   constructor(props) {
@@ -23,14 +17,6 @@ class List extends React.Component {
     const response = await api.get_all_todos();
     response.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
     this.setState({ data: response });
-  }
-
-  componentDidUpdate(prevProps) {
-    // if (this.props.data.id !== prevProps.data.id) {
-    //   var updatedList = [this.props.data].concat(this.state.data);
-    //   this.setState({ data: updatedList });
-    // }
-    console.log("updated");
   }
 
   update(id, checked) {
@@ -61,44 +47,19 @@ class List extends React.Component {
 
   render() {
     return (
-      //   <Text>foo</Text>
       <SafeAreaView style={styles.container}>
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
             <View style={styles.row}>
               <Text style={styles.item}>{item.text}</Text>
-              <Checkbox></Checkbox>
-              {/* <CheckBox
-                checked={item.checked}
-                onPress={() => this.setState({ checked: !this.state.checked })}
-              /> */}
+              <Checkbox checked={item.checked} id={item.id}></Checkbox>
               <Button onPress={(e) => this.delete(item.id)} title="Delete" />
             </View>
           )}
           keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
-      //   <table>
-      //     <tbody>
-      //       {this.state.data.map((todo, index) => (
-      //         <tr key={index}>
-      //           <td>{todo.text}</td>
-      //           <td>
-      //             <input
-      //               type="checkbox"
-      //               id={todo.id}
-      //               defaultChecked={todo.checked}
-      //               onClick={(e) => this.update(todo.id)}
-      //             ></input>
-      //           </td>
-      //           <td>
-      //             <button onClick={(e) => this.delete(todo.id)}>Delete</button>
-      //           </td>
-      //         </tr>
-      //       ))}
-      //     </tbody>
-      //   </table>
     );
   }
 }
