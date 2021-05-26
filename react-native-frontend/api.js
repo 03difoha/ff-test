@@ -25,7 +25,7 @@ async function create_todo(text) {
 }
 
 function update_todo(id, checked) {
-  fetch(URL_base + `/${id}`, {
+  const response = fetch(URL_base + `/${id}`, {
     body: JSON.stringify({
       checked: checked,
     }),
@@ -33,11 +33,12 @@ function update_todo(id, checked) {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
     })
     .catch((error) => {
       console.log(error);
     });
+  return response;
 }
 
 function delete_todo(id) {
