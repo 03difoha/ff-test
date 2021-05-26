@@ -16,12 +16,10 @@ class TodoList extends react.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
     if (this.props.data.id !== prevProps.data.id) {
       var updatedList = [this.props.data].concat(this.state.data);
       this.setState({ data: updatedList });
     }
-    // console.log(this.props.data.id);
   }
 
   update(e) {
@@ -40,30 +38,12 @@ class TodoList extends react.Component {
       }
     }
     this.setState({ data: removedTodo });
-    // document.getElementById(e).parentNode.parentNode.style.display = "none";
   }
 
   render() {
     return (
       <table>
         <tbody>
-          {/* {this.props.data.map((todo, index) => (
-            <tr key={index}>
-              <td>{todo.text}</td>
-              <td>
-                <input
-                  type="checkbox"
-                  id={todo.id}
-                  defaultChecked={todo.checked}
-                  onClick={(e) => this.update(todo.id)}
-                ></input>
-              </td>
-              <td>
-                <button onClick={(e) => this.delete(todo.id)}>Delete</button>
-              </td>
-            </tr>
-          ))} */}
-
           {this.state.data.map((todo, index) => (
             <tr key={index}>
               <td>{todo.text}</td>
