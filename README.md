@@ -1,8 +1,11 @@
 # ff-test
 
+A backend is currently deployed on AWS so the react + react native apps should work out the box.
+If you like you can deploy the the backend yourself with the following steps.
+
 # Serverless backend deployment
 
-[Install serverless](https://www.serverless.com/framework/docs/getting-started/) 
+[Install serverless](https://www.serverless.com/framework/docs/getting-started/)
 
 ```
 cd aws-node-rest-api-with-dynamodb
@@ -33,9 +36,8 @@ In `react-native-frontend` there is also an `api.js` file. Repeat the same proce
 npm install -g expo-cli
 cd react-native-frontend
 npm install
-npm start 
+npm start
 ```
 
-This will start the metro bundler app in a tab in your browser. 
+This will start the metro bundler app in a tab in your browser.
 Download the Expo app for android or iPhone, scan the QR code in metro bundler to test the react native app.
-
