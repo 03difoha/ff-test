@@ -10,7 +10,7 @@ export default function App() {
       <Text style={styles.header}>To-do List</Text>
       <StatusBar style="auto" />
       <Form></Form>
-      <List></List>
+      {/* <List></List> */}
     </View>
   );
 }
