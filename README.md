@@ -32,6 +32,7 @@ In `react-native-frontend` there is also an `api.js` file. Repeat the same proce
 ```
 npm install -g expo-cli
 cd react-native-frontend
+npm install
 npm start 
 ```
 
