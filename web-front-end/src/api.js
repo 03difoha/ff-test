@@ -3,9 +3,11 @@ const URL_base =
 
 const fetch = require("node-fetch");
 
-function handleError(error) {
-  if (alert(error + "\nCheck your connection and click ok to reload")) {
-  } else window.location.reload();
+function handleError(response) {
+  if (!response.ok) {
+    if (alert(response + "\nCheck your connection and click ok to reload")) {
+    } else window.location.reload();
+  }
 }
 
 async function getAllTodos() {
@@ -19,7 +21,7 @@ async function getAllTodos() {
 
 async function createTodos(text) {
   try {
-    const respose = await fetch(URL_base, {
+    const response = await fetch(URL_base, {
       method: "POST",
       body: JSON.stringify({
         text: text,
@@ -28,30 +30,33 @@ async function createTodos(text) {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-    return respose.json();
+    return response.json();
   } catch (error) {
     handleError(error);
   }
 }
 
-function updateTodos(id, checked) {
+async function updateTodos(id, checked) {
   try {
-    fetch(URL_base + `/${id}`, {
+    const response = await fetch(URL_base + `/${id}`, {
       body: JSON.stringify({
         checked: checked,
       }),
       method: "PUT",
     });
+    return response.json();
   } catch (error) {
+    console.log();
     handleError(error);
   }
 }
 
-function deleteTodos(id) {
+async function deleteTodos(id) {
   try {
-    fetch(URL_base + `/${id}`, {
+    const response = await fetch(URL_base + `/${id}`, {
       method: "DELETE",
     });
+    return response.json();
   } catch (error) {
     handleError(error);
   }
