@@ -1225,7 +1225,7 @@
     "json5" "^1.0.1"
     "write-file-atomic" "^2.3.0"
 
-"@expo/metro-config@^0.1.63":
+"@expo/metro-config@^0.1.16", "@expo/metro-config@^0.1.63":
   "integrity" "sha512-Py1Zovxl5Esy09xewnOytOPgt5xC+QWP7bgvF4VML6EE05e7Qrz3VnLZJxJA8H0hGJc6/ctwO5tttctZpf1qwQ=="
   "resolved" "https://registry.npmjs.org/@expo/metro-config/-/metro-config-0.1.69.tgz"
   "version" "0.1.69"
@@ -3061,6 +3061,15 @@
   "resolved" "https://registry.npmjs.org/expo-status-bar/-/expo-status-bar-1.0.4.tgz"
   "version" "1.0.4"
 
+"expo-updates@^0.4.1":
+  "integrity" "sha512-89bvwemgmWWPGAHHnzSFCryWW3TmPNozcShwi7976KAlNcXM7Aitv7uifxtkdBt85TECFm5N6LY278psjyt8Dg=="
+  "resolved" "https://registry.npmjs.org/expo-updates/-/expo-updates-0.4.2.tgz"
+  "version" "0.4.2"
+  dependencies:
+    "@expo/metro-config" "^0.1.16"
+    "fbemitter" "^2.1.1"
+    "uuid" "^3.4.0"
+
 "expo@~41.0.1":
   "integrity" "sha512-Lk4Xdst+OfsLgBNeu89hxk0qFrZnHwwXFmBbJkYLlZkdC3tvNJ8jgGHsKg6jYpsnal/z0uVc+uk2ev91qXQykg=="
   "resolved" "https://registry.npmjs.org/expo/-/expo-41.0.1.tgz"
@@ -3212,6 +3221,13 @@
     "promise" "^7.1.1"
     "setimmediate" "^1.0.5"
     "ua-parser-js" "^0.7.18"
+
+"fiction-expo-restart@^1.0.9":
+  "integrity" "sha512-Y/lqq6Wvva3Zj4ds+FaGXRz224LOW5rFzpIfeGGOe/OAMfR7buhtcHUOjtny3O6w0Nj1UuG9c/0w8cKMPpp2kA=="
+  "resolved" "https://registry.npmjs.org/fiction-expo-restart/-/fiction-expo-restart-1.0.9.tgz"
+  "version" "1.0.9"
+  dependencies:
+    "expo-updates" "^0.4.1"
 
 "figures@^2.0.0":
   "integrity" "sha1-OrGi0qYsi/tDGgyUy3l6L84nyWI="

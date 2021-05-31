@@ -46,7 +46,6 @@ async function updateTodos(id, checked) {
     });
     return response.json();
   } catch (error) {
-    console.log();
     handleError(error);
   }
 }

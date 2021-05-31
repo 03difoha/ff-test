@@ -25,7 +25,9 @@ class Form extends react.Component {
     }
 
     var res = await api.createTodo(this.state.value);
-    this.setState({ value: "", newTodo: res });
+    if (res != undefined) {
+      this.setState({ value: "", newTodo: res });
+    }
   }
   render() {
     return (

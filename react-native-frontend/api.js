@@ -1,15 +1,22 @@
 const URL_base =
   "https://25u289345c.execute-api.us-east-1.amazonaws.com/dev/todos";
-import { DevSettings } from "react-native";
+import { Alert } from "react-native";
+import { Restart } from "fiction-expo-restart";
 
 const fetch = require("node-fetch");
+
 function handleError(error) {
-  if (alert(error + "\nCheck your connection and click ok to reload")) {
-  } else {
-    // referesh app
-    // potentially better solution than this
-    DevSettings.reload();
-  }
+  Alert.alert(
+    `Error: ${error.message}`,
+    "Please check your connection and reload",
+    [
+      {
+        text: "Reload",
+        onPress: () => Restart(),
+      },
+    ],
+    { cancelable: false }
+  );
 }
 
 async function getAllTodos() {
@@ -38,24 +45,26 @@ async function createTodo(text) {
   }
 }
 
-function updateTodo(id, checked) {
+async function updateTodo(id, checked) {
   try {
-    fetch(URL_base + `/${id}`, {
+    const response = await fetch(URL_base + `/${id}`, {
       body: JSON.stringify({
         checked: checked,
       }),
       method: "PUT",
     });
+    return response.json();
   } catch (error) {
     handleError(error);
   }
 }
 
-function deleteTodo(id) {
+async function deleteTodo(id) {
   try {
-    fetch(URL_base + `/${id}`, {
+    const response = await fetch(URL_base + `/${id}`, {
       method: "DELETE",
     });
+    return response.json();
   } catch (error) {
     handleError(error);
   }
